@@ -15,8 +15,8 @@ runs:
   steps:
     # Scenario 1: package-lock.json in Composite Action repo
     - name: Setup Node.js (with cache from composite repo)
-      # uses: priyagupta108/setup-node@test-hashFiles
-      uses: actions/setup-node@v6
+      uses: priyagupta108/setup-node@test-hashFiles
+      # uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'npm'
