@@ -39,8 +39,8 @@ runs:
 
     # Scenario 4: Non-Existent Directory (Error Case)
     - name: Setup Node.js (with cache from non-existent composite subfolder)
-      # uses: priyagupta108/setup-node@test-hashFiles
-      uses: actions/setup-node@v6
+      uses: priyagupta108/setup-node@test-hashFiles
+      # uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'npm'
