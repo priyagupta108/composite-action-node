@@ -22,74 +22,74 @@ runs:
         cache: 'npm'
         cache-dependency-path: ${{ github.action_path }}/package-lock.json
 
-    # Scenario 2: package-lock.json in Consumer repo
-    - name: Setup Node.js (with cache from consumer repo)
-      # uses: priyagupta108/setup-node@test-hashFiles
-      uses: actions/setup-node@v6
-      with:
-        node-version: ${{ inputs.node-version }}
-        cache: 'npm'
-        cache-dependency-path: package-lock.json
+    # # Scenario 2: package-lock.json in Consumer repo
+    # - name: Setup Node.js (with cache from consumer repo)
+    #   # uses: priyagupta108/setup-node@test-hashFiles
+    #   uses: actions/setup-node@v6
+    #   with:
+    #     node-version: ${{ inputs.node-version }}
+    #     cache: 'npm'
+    #     cache-dependency-path: package-lock.json
 
-    # Scenario 3: Composite Action with Subdirectory
-    - name: Setup Node.js (with cache from composite subfolder)
-      # uses: priyagupta108/setup-node@test-hashFiles
-      uses: actions/setup-node@v6
-      with:
-        node-version: ${{ inputs.node-version }}
-        cache: 'npm'
-        cache-dependency-path: ${{ github.action_path }}/subfolder/package-lock.json
+    # # Scenario 3: Composite Action with Subdirectory
+    # - name: Setup Node.js (with cache from composite subfolder)
+    #   # uses: priyagupta108/setup-node@test-hashFiles
+    #   uses: actions/setup-node@v6
+    #   with:
+    #     node-version: ${{ inputs.node-version }}
+    #     cache: 'npm'
+    #     cache-dependency-path: ${{ github.action_path }}/subfolder/package-lock.json
 
-    # Scenario 4: Non-Existent Directory (Error Case)
-    - name: Setup Node.js (with cache from non-existent composite subfolder)
-      # uses: priyagupta108/setup-node@test-hashFiles
-      uses: actions/setup-node@v6
-      with:
-        node-version: ${{ inputs.node-version }}
-        cache: 'npm'
-        cache-dependency-path: ${{ github.action_path }}/subfolder/app/package-lock.json
+    # # Scenario 4: Non-Existent Directory (Error Case)
+    # - name: Setup Node.js (with cache from non-existent composite subfolder)
+    #   # uses: priyagupta108/setup-node@test-hashFiles
+    #   uses: actions/setup-node@v6
+    #   with:
+    #     node-version: ${{ inputs.node-version }}
+    #     cache: 'npm'
+    #     cache-dependency-path: ${{ github.action_path }}/subfolder/app/package-lock.json
 
-    # Scenario 5: Multiple dependency files in composite repo
-    - name: Setup Node.js (with cache from multiple composite files)
-      # uses: priyagupta108/setup-node@test-hashFiles
-      uses: actions/setup-node@v6
-      with:
-        node-version: ${{ inputs.node-version }}
-        cache: 'npm'
-        cache-dependency-path: |
-          ${{ github.action_path }}/package-lock.json
-          ${{ github.action_path }}/server/app/package-lock.json
-          ${{ github.action_path }}/subfolder/package-lock.json
+    # # Scenario 5: Multiple dependency files in composite repo
+    # - name: Setup Node.js (with cache from multiple composite files)
+    #   # uses: priyagupta108/setup-node@test-hashFiles
+    #   uses: actions/setup-node@v6
+    #   with:
+    #     node-version: ${{ inputs.node-version }}
+    #     cache: 'npm'
+    #     cache-dependency-path: |
+    #       ${{ github.action_path }}/package-lock.json
+    #       ${{ github.action_path }}/server/app/package-lock.json
+    #       ${{ github.action_path }}/subfolder/package-lock.json
 
-    # Scenario 6: Wildcard Patterns for Cache Dependencies
-    - name: Setup Node.js (with cache from composite wildcards)
-      # uses: priyagupta108/setup-node@test-hashFiles
-      uses: actions/setup-node@v6
-      with:
-        node-version: ${{ inputs.node-version }}
-        cache: 'npm'
-        cache-dependency-path: |
-          ${{ github.action_path }}/**/package-lock.json
-          ${{ github.action_path }}/**/server/app/package-lock.json
-          ${{ github.action_path }}/**/subfolder/package-lock.json
-          ${{ github.action_path }}/**/frontend/package-lock.json
+    # # Scenario 6: Wildcard Patterns for Cache Dependencies
+    # - name: Setup Node.js (with cache from composite wildcards)
+    #   # uses: priyagupta108/setup-node@test-hashFiles
+    #   uses: actions/setup-node@v6
+    #   with:
+    #     node-version: ${{ inputs.node-version }}
+    #     cache: 'npm'
+    #     cache-dependency-path: |
+    #       ${{ github.action_path }}/**/package-lock.json
+    #       ${{ github.action_path }}/**/server/app/package-lock.json
+    #       ${{ github.action_path }}/**/subfolder/package-lock.json
+    #       ${{ github.action_path }}/**/frontend/package-lock.json
 
-    - name: Install dependencies (npm ci)
-      shell: bash
-      run: npm ci
+    # - name: Install dependencies (npm ci)
+    #   shell: bash
+    #   run: npm ci
 
-    - name: Print cache dependency paths
-      shell: bash
-      run: |
-        echo "Cache dependency paths provided to composite action:"
-        echo "${{ inputs.cache-dependency-path }}"
-        echo "Files found:"
-        while read -r dep; do
-          if [ -n "$dep" ]; then
-            if [ -f "$dep" ]; then
-              echo "✔ Found: $dep"
-            else
-              echo "✗ Missing: $dep"
-            fi
-          fi
-        done <<< "${{ inputs.cache-dependency-path }}"
+    # - name: Print cache dependency paths
+    #   shell: bash
+    #   run: |
+    #     echo "Cache dependency paths provided to composite action:"
+    #     echo "${{ inputs.cache-dependency-path }}"
+    #     echo "Files found:"
+    #     while read -r dep; do
+    #       if [ -n "$dep" ]; then
+    #         if [ -f "$dep" ]; then
+    #           echo "✔ Found: $dep"
+    #         else
+    #           echo "✗ Missing: $dep"
+    #         fi
+    #       fi
+    #     done <<< "${{ inputs.cache-dependency-path }}"
