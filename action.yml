@@ -37,26 +37,26 @@ runs:
     #     cache: 'npm'
     #     cache-dependency-path: ${{ github.action_path }}/subfolder/package-lock.json
 
-    # Scenario 4: Non-Existent Directory (Error Case)
-    - name: Setup Node.js (with cache from non-existent composite subfolder)
+    # # Scenario 4: Non-Existent Directory (Error Case)
+    # - name: Setup Node.js (with cache from non-existent composite subfolder)
+    #   uses: priyagupta108/setup-node@test-hashFiles
+    #   # uses: actions/setup-node@v6
+    #   with:
+    #     node-version: ${{ inputs.node-version }}
+    #     cache: 'npm'
+    #     cache-dependency-path: ${{ github.action_path }}/subfolder/app/package-lock.json
+
+    # Scenario 5: Multiple dependency files in composite repo
+    - name: Setup Node.js (with cache from multiple composite files)
       uses: priyagupta108/setup-node@test-hashFiles
       # uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'npm'
-        cache-dependency-path: ${{ github.action_path }}/subfolder/app/package-lock.json
-
-    # # Scenario 5: Multiple dependency files in composite repo
-    # - name: Setup Node.js (with cache from multiple composite files)
-    #   # uses: priyagupta108/setup-node@test-hashFiles
-    #   uses: actions/setup-node@v6
-    #   with:
-    #     node-version: ${{ inputs.node-version }}
-    #     cache: 'npm'
-    #     cache-dependency-path: |
-    #       ${{ github.action_path }}/package-lock.json
-    #       ${{ github.action_path }}/server/app/package-lock.json
-    #       ${{ github.action_path }}/subfolder/package-lock.json
+        cache-dependency-path: |
+          ${{ github.action_path }}/package-lock.json
+          ${{ github.action_path }}/server/app/package-lock.json
+          ${{ github.action_path }}/subfolder/package-lock.json
 
     # # Scenario 6: Wildcard Patterns for Cache Dependencies
     # - name: Setup Node.js (with cache from composite wildcards)
