@@ -20,22 +20,22 @@ runs:
     #     cache-dependency-path: ${{ github.action_path }}/package-lock.json
 
     # Scenario 2: package-lock.json in Consumer repo
-    - name: Setup Node.js (with cache from consumer repo)
+    # - name: Setup Node.js (with cache from consumer repo)
+    #   uses: priyagupta108/setup-node@test-hashFiles
+    #   # uses: actions/setup-node@v6
+    #   with:
+    #     node-version: ${{ inputs.node-version }}
+    #     cache: 'npm'
+    #     cache-dependency-path: package-lock.json
+
+    # Scenario 3: Composite Action with Subdirectory
+    - name: Setup Node.js (with cache from composite subfolder)
       uses: priyagupta108/setup-node@test-hashFiles
       # uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'npm'
-        cache-dependency-path: package-lock.json
-
-    # # Scenario 3: Composite Action with Subdirectory
-    # - name: Setup Node.js (with cache from composite subfolder)
-    #   # uses: priyagupta108/setup-node@test-hashFiles
-    #   uses: actions/setup-node@v6
-    #   with:
-    #     node-version: ${{ inputs.node-version }}
-    #     cache: 'npm'
-    #     cache-dependency-path: ${{ github.action_path }}/subfolder/package-lock.json
+        cache-dependency-path: ${{ github.action_path }}/subfolder/package-lock.json
 
     # # Scenario 4: Non-Existent Directory (Error Case)
     # - name: Setup Node.js (with cache from non-existent composite subfolder)
@@ -73,8 +73,8 @@ runs:
 
     - name: Install dependencies (npm ci)
       shell: bash
-      run: npm ci
-      # working-directory: ${{ github.action_path }}
+      working-directory: ${{ github.action_path }}
+      run: npm ci --workspace=subfolder
    
     # - name: Print cache dependency paths
     #   shell: bash
