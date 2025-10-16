@@ -77,19 +77,23 @@ runs:
     - name: Install dependencies (npm ci)
       shell: bash
       run: npm ci
-
-    - name: Print cache dependency paths
+    - name: Print installed dependencies (top-level)
       shell: bash
       run: |
-        echo "Cache dependency paths provided to composite action:"
-        echo "${{ inputs.cache-dependency-path }}"
-        echo "Files found:"
-        while read -r dep; do
-          if [ -n "$dep" ]; then
-            if [ -f "$dep" ]; then
-              echo "✔ Found: $dep"
-            else
-              echo "✗ Missing: $dep"
-            fi
-          fi
-        done <<< "${{ inputs.cache-dependency-path }}"
+        echo "Installed dependencies (top-level):"
+    npm list --depth=0
+    # - name: Print cache dependency paths
+    #   shell: bash
+    #   run: |
+    #     echo "Cache dependency paths provided to composite action:"
+    #     echo "${{ inputs.cache-dependency-path }}"
+    #     echo "Files found:"
+    #     while read -r dep; do
+    #       if [ -n "$dep" ]; then
+    #         if [ -f "$dep" ]; then
+    #           echo "✔ Found: $dep"
+    #         else
+    #           echo "✗ Missing: $dep"
+    #         fi
+    #       fi
+    #     done <<< "${{ inputs.cache-dependency-path }}"
