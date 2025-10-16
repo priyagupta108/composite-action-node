@@ -81,7 +81,7 @@ runs:
       shell: bash
       run: |
         echo "Installed dependencies (top-level):"
-    npm list --depth=0
+        npm list --depth=0
     # - name: Print cache dependency paths
     #   shell: bash
     #   run: |
