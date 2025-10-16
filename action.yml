@@ -74,7 +74,7 @@ runs:
     - name: Install dependencies (npm ci)
       shell: bash
       run: npm ci
-      working-directory: ${{ github.action_path }}/package-lock.json
+      working-directory: ${{ github.action_path }}
    
     # - name: Print cache dependency paths
     #   shell: bash
