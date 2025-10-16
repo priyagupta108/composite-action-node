@@ -60,8 +60,8 @@ runs:
 
     # Scenario 6: Wildcard Patterns for Cache Dependencies
     - name: Setup Node.js (with cache from composite wildcards)
-      # uses: priyagupta108/setup-node@test-hashFiles
-      uses: actions/setup-node@v6
+      uses: priyagupta108/setup-node@test-hashFiles
+      # uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'npm'
